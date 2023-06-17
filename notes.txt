@@ -1,0 +1,10 @@
+Read based  analysis
+
+
+metaphlan /home/ubuntu/Data/Quince_datasets/AD_small/sample2/sample2_R1.fastq,/home/ubuntu/Data/Quince_datasets/AD_small/sample2/sample2_R2.fastq --bowtie2db /home/ubuntu/Databases/metaphlan --nproc 5 --input_type fastq -o /home/ubuntu/Projects/Read_based_analysis/metaphlan/sample2.txt  --bowtie2out metaphlan/sample2.bz2
+grep clade out > out2
+grep "s__" out | grep -v "t__" | cut -f7 -d"|" >> out2
+
+
+kraken2 --db ~/Databases/kraken ~/Data/AD_small/sample1/sample1_R1.fastq ~/Data/AD_small/sample1/sample1_R2.fastq --threads 8 --use-names --report kraken_report.txt --output kraken_sample1
+

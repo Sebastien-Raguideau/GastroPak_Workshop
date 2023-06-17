@@ -1,0 +1,12 @@
+name: Read_analysis
+channels:
+  - conda-forge
+  - bioconda
+  - defaults
+  - anaconda
+dependencies:
+  - metaphlan>4
+  - kraken2
+  - diamond
+  - krona
+  - ipython
