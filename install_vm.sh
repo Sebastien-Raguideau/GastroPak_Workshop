@@ -93,14 +93,15 @@ mamba env create -f $GastroPak_Workshop/conda_env_LongReads.yaml
 # -------------------------------------
 
 source $CONDA/bin/deactivate
-source $CONDA/bin/activate STRONG
-mamba install -Y -c bioconda checkm-genome megahit bwa kraken2 krona
 
-# update db for krona
-cd $CONDA/envs/STRONG/opt/krona && ./updateTaxonomy.sh 
 
 # add R environement
 mamba env create -f $GastroPak_Workshop/R.yaml
+
+# install metaphlan4
+mamba env create --name read_based -c conda-forge -c bioconda  'metaphlan>=4'
+
+
 
 # -------------------------------------
 # ---------- modify .bashrc -----------
@@ -157,14 +158,26 @@ wget https://raw.githubusercontent.com/Sebastien-Raguideau/strain_resolution_pra
 # ---------- download datasets  -------
 # -------------------------------------
 mkdir $HOME/Data
-ssh-keyscan 137.205.71.34 >> ~/.ssh/known_hosts # add to known host to suppress rsync question
-rsync -a --progress -L "sebr@137.205.71.33:/home/seb/seb/Project/Tuto/GastroPak_Workshop/datasets/*" "$HOME/Data/"
+ssh-keyscan 137.205.71.33 >> ~/.ssh/known_hosts # add to known host to suppress rsync question
+rsync -a --progress -L "seb@137.205.71.33:/home/seb/seb/Project/Tuto/MMB_DTP/datasets/*" "$HOME/Data/"
 cd $HOME/Data
 
 tar xzvf AD16S.tar.gz && mv data AD_16S && rm AD16S.tar.gz && mv metadata.tsv AD_16S&
 tar xzvf HIFI_data.tar.gz && rm HIFI_data.tar.gz &
 tar xzvf Quince_datasets.tar.gz && mv Quince_datasets/* . && rm Quince_datasets.tar.gz && rm -r Quince_datasets&
 tar xzvf STRONG_prerun.tar.gz && rm STRONG_prerun.tar.gz&
+tar xzvf gastropak_data.tar && rm gastropak_data.tar&
+
+# metaphlan
+source $CONDA/bin/activate Read_analysis
+metaphlan --install --bowtie2db $HOME/Databases/metaphlan
+source $CONDA/bin/deactivate
+
+# update db for krona
+source $CONDA/bin/activate Read_analysis
+cd $CONDA/envs/Read_analysis/opt/krona && ./updateTaxonomy.sh 
+source $CONDA/bin/deactivate
+
 
 # -------------------------------------
 # ---------- download databases -------
@@ -172,31 +185,24 @@ tar xzvf STRONG_prerun.tar.gz && rm STRONG_prerun.tar.gz&
 mkdir -p $HOME/Databases
 cd $HOME/Databases
 
-
 wget https://genome-idx.s3.amazonaws.com/kraken/k2_standard_08gb_20220926.tar.gz
 wget https://data.ace.uq.edu.au/public/CheckM_databases/checkm_data_2015_01_16.tar.gz
+wget https://microbial-metag-seb-data-sharing.s3.climb.ac.uk/card_5_10_21.tar.gz
 
-# rsync databases
-# dada2 
-rsync -a --progress -L "sebr@137.205.71.33:/mnt/gpfs2/seb/Database/silva/silva_dada2_138" "$HOME/Databases/"
 # cogs
-rsync -a --progress -L "sebr@137.205.71.33:/mnt/gpfs2/seb/Database/rpsblast_cog_db/Cog_LE.tar.gz" "$HOME/Databases/"
+rsync -a --progress -L "seb@137.205.71.33:/mnt/gpfs2/seb/Database/rpsblast_cog_db/Cog_LE.tar.gz" "$HOME/Databases/"
 
 # untar
 mkdir Cog && tar xzvf Cog_LE.tar.gz -C Cog && rm Cog_LE.tar.gz
 mkdir checkm && tar xzvf checkm_data_2015_01_16.tar.gz -C checkm && rm checkm_data_2015_01_16.tar.gz
 mkdir kraken && tar xzvf k2_standard_08gb_20220926.tar.gz -C kraken && rm k2_standard_08gb_20220926.tar.gz
+tar xzvf card_5_10_21.tar.gz && rm card_5_10_21.tar.gz
 rm *.log
 
-
-# install gtdbbtk database
-wget https://data.ace.uq.edu.au/public/gtdb/data/releases/latest/auxillary_files/gtdbtk_v2_data.tar.gz
-mkdir gtdb && tar -xzvf gtdbtk_v2_data.tar.gz --strip 1 -C gtdb && rm gtdbtk_v2_data.tar.gz
 
 # install checkm/gtdb database
 source $CONDA/bin/activate STRONG
 checkm data setRoot $HOME/Databases/checkm
-conda env config vars set GTDBTK_DATA_PATH="$HOME/Databases/gtdb";
 source $CONDA/bin/deactivate
 
 # -------------------------------------
