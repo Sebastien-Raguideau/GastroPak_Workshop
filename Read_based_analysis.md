@@ -48,6 +48,7 @@ cd ~/Projects/Read_based_analysis/metaphlan
 ```
 metaphlan metagenome_1.fastq,metagenome_2.fastq --bowtie2db path_to_metaphlan_db --bowtieout out.bz2 --nproc 5 --input_type fastq -o profiled_metagenome.txt
 ```
+
  </p>
 
 *Q: We did the analysis for a unique sample, how would you proceed if you wanted to apply metaphlan to all samples?*
@@ -96,6 +97,7 @@ cd kraken
 ```
 kraken2 --db ~/Databases/kraken R1.fastq R2.fastq --threads 8 --use-names --report report.txt --output sample
 ```
+
  </p>
  
 ### Results
