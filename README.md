@@ -32,7 +32,9 @@ LUNCH
 **Thursday 22nd June**  
 
 9h → 12:30 Metagenomics assembly tutorial continued (Chris/Seb) 
+
 LUNCH  
+
 14h → 15h: *Lecture* Long read metagenomics assembly (Chris)
 15h → 17h: --- *Practical* --- Nanopore metagenomics tutorial (Seb)  
 
