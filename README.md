@@ -10,6 +10,7 @@ LUNCH
 16h → 17h: --- *Practical* --- qPCR data processing and analysis (Kim)  
 
 **Tuesday 20th June**
+
 9h -> 10h: Command line linux refresher (Seb)  
 10h → 11h --- *Lecture* --- Genome Assembly and Annotation (Chris)  
 11h → 12:30 --- *Practical* --- Genome Assembly and Annotation Tutorial (Seb)  
@@ -19,6 +20,7 @@ LUNCH
 16h → 17h: --- *Lecture* --- Long-read metagenomics molecular biology (Rob)
 
 **Wednesday 21st June**  
+
 9h -> 10h: Continue 16S rRNA tutorial (Seb)  
 10h → 11h: --- *Lecture* --- Introduction to metagenomics: Read-based profiling and annotation (Chris)  
 11h → 12:30: --- *Practical* --- Metagenomics read-based profiling tutorial (Chris/Seb)  
@@ -28,6 +30,7 @@ LUNCH
 16h → 17h: --- *Practical* --- Metagenomics assembly tutorial (Chris/Seb)  
 
 **Thursday 22nd June**  
+
 9h → 12:30 Metagenomics assembly tutorial continued (Chris/Seb) 
 LUNCH  
 14h → 15h: *Lecture* Long read metagenomics assembly (Chris)
@@ -36,7 +39,6 @@ LUNCH
 **Friday 23rd June**  
 
 9h → 11h: --- *Practical* --- HIFI metagenomics tutorial (Seb)  
-
 11h → 15h --- *Extended Lunch* --- Attend Friday prayers at Norwich Central mosque
 
 or 
