@@ -4,7 +4,7 @@ export REPOS=$HOME"/repos"
 mkdir -p $REPOS
 cd $REPOS
 
-MMB_DTP=$HOME/repos/GastroPak_Workshop
+GastroPak_Workshop=$HOME/repos/GastroPak_Workshop
 # ------------------------------
 # ----- get all repos ---------- 
 # ------------------------------
@@ -98,11 +98,6 @@ source $CONDA/bin/deactivate
 # add R environement
 mamba env create -f $GastroPak_Workshop/R.yaml
 
-# install metaphlan4
-mamba env create --name read_based -c conda-forge -c bioconda  'metaphlan>=4'
-
-
-
 # -------------------------------------
 # ---------- modify .bashrc -----------
 # -------------------------------------
@@ -159,13 +154,12 @@ wget https://raw.githubusercontent.com/Sebastien-Raguideau/strain_resolution_pra
 # -------------------------------------
 mkdir $HOME/Data
 ssh-keyscan 137.205.71.33 >> ~/.ssh/known_hosts # add to known host to suppress rsync question
-rsync -a --progress -L "seb@137.205.71.33:/home/seb/seb/Project/Tuto/MMB_DTP/datasets/*" "$HOME/Data/"
+rsync -a --progress -L "seb@137.205.71.33:/home/seb/seb/Project/Tuto/Gastropak/datasets/*" "$HOME/Data/"
 cd $HOME/Data
 
 tar xzvf AD16S.tar.gz && mv data AD_16S && rm AD16S.tar.gz && mv metadata.tsv AD_16S&
 tar xzvf HIFI_data.tar.gz && rm HIFI_data.tar.gz &
 tar xzvf Quince_datasets.tar.gz && mv Quince_datasets/* . && rm Quince_datasets.tar.gz && rm -r Quince_datasets&
-tar xzvf STRONG_prerun.tar.gz && rm STRONG_prerun.tar.gz&
 tar xzvf gastropak_data.tar && rm gastropak_data.tar&
 
 # metaphlan
