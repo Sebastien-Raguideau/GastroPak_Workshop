@@ -47,7 +47,6 @@ LUNCH
 
 or 
 LUNCH 
-
 14h → 15h --- Explore GastroPak data on VM (Chris/Seb)
 
 15h → 16h: --- *Lecture* ---  Machine learning in metagenomics (Chris)  
