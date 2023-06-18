@@ -36,15 +36,18 @@ LUNCH
 LUNCH  
 
 14h → 15h: *Lecture* Long read metagenomics assembly (Chris)
+
 15h → 17h: --- *Practical* --- Nanopore metagenomics tutorial (Seb)  
 
 **Friday 23rd June**  
 
 9h → 11h: --- *Practical* --- HIFI metagenomics tutorial (Seb)  
+
 11h → 15h --- *Extended Lunch* --- Attend Friday prayers at Norwich Central mosque
 
 or 
 LUNCH 
+
 14h → 15h --- Explore GastroPak data on VM (Chris/Seb)
 
 15h → 16h: --- *Lecture* ---  Machine learning in metagenomics (Chris)  
