@@ -130,4 +130,17 @@ Visualise with Artemis
 
 So cool :)
 
+# Long read assembly with flye
+
+Assemble a genome with flye:
+
+    flye --nano-raw BL21DE3_LR.fastq --out-dir BL21DE3_LR_flye --threads 8
+    
+Visualise assembly graph
+
+Count gene number
+
+
+
+
 # Long read assembly
