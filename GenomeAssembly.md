@@ -110,7 +110,7 @@ Annotate to CARD?
 Visualise assembly graph with Bandage:
 
 
-#PROKKA genome annotation pipeline
+# PROKKA genome annotation pipeline
 
 https://github.com/tseemann/prokka
 
@@ -128,4 +128,4 @@ Visualise with Artemis
 
 So cool :)
 
-#Long read assembly
+# Long read assembly
