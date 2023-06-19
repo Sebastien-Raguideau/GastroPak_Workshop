@@ -182,7 +182,7 @@ conda env list
 To install a new software you can add it to the base environment or create a new one with a dedicated name. Let's see how it work with the "cowsays" program.
 
 ```bash
-conda install -c conda-forge cowpy -n cowsay
+conda create -c conda-forge cowpy -n cowsay
 ```
 
 Try the command `cowpy hello world`
