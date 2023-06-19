@@ -33,66 +33,99 @@ Then get long read data
     wget https://microbial-metag-genome-tutorial.s3.climb.ac.uk/Ecoli61_LR.fastq
 
     cd ..
+
 Count number of reads, and total size of files in bps
-
-
-
-
 
 
 Install megahit
 
-   44  wget https://github.com/voutcn/megahit/releases/download/v1.2.9/MEGAHIT-1.2.9-Linux-x86_64-static.tar.gz
-   45  tar zvxf MEGAHIT-1.2.9-Linux-x86_64-static.tar.gz
-   46  cd MEGAHIT-1.2.9-Linux-x86_64-static/bin/
+    mkdir ~/Installed
+    cd ~/Installed
+    wget https://github.com/voutcn/megahit/releases/download/v1.2.9/MEGAHIT-1.2.9-Linux-x86_64-static.tar.gz
+    tar zvxf MEGAHIT-1.2.9-Linux-x86_64-static.tar.gz
+    cd MEGAHIT-1.2.9-Linux-x86_64-static/bin/
+    sudo cp * /usr/local/bin
+    
+    
+Make analysis folder
 
-conda install -c bioconda megahit
+    mkdir Projects
+    cd Projects/
+   
+    mkdir GenomeAssembly
+    cd GenomeAssembly/
 
-conda activate LongReads
-
-sudo cp * /usr/local/bin
+Assembly first genome with megahit:
 
 
-
-megahit -1 BL23DE3_SR_1.fastq -2 BL23DE3_SR_2.fastq -o BL23DE3_SR -t 8
+    megahit -1 ~/Data/Genomes/short_read_data/BL23DE3_SR_1.fastq -2 ~/Data/Genomes/short_read_data/BL23DE3_SR_2.fastq -o BL23DE3_SR_megahit_ -t 8
 
 
 2023-06-19 17:01:20 - 352 contigs, total 4639286 bp, min 218 bp, max 329790 bp, avg 13179 bp, N50 115146 bp
 2023-06-19 17:01:20 - ALL DONE. Time elapsed: 258.170330 seconds
 
 
-Get coverage depth 
+Get average coverage depth 
 
 Get error rate
 
 How would you get summary stats?
 
-One way
-
-
-
-Call ORFs 
+Call ORFs with prodigal
 
 Now try spades
 
-spades -1 BL23DE3_SR_1.fastq -2 BL23DE3_SR_2.fastq -o BL23DE3_SR_spades -t 8
+    export SRGENOME=~/Data/Genomes/short_read_data
 
-~/repos/GastroPak_Workshop/scripts/contig-stats.pl < contigs.fasta 
+    spades -1 $SRGENOME/BL23DE3_SR_1.fastq -2 $SRGENOME/BL23DE3_SR_2.fastq -o BL23DE3_SR_spades -t 8
+
+
+This may take twenty minutes or so:
+
+Get assembly stats:
+
+    cd BL23DE3_SR_spades
+    
+    ~/repos/GastroPak_Workshop/scripts/contig-stats.pl < contigs.fasta 
+
 
 sequence #: 2244	total length: 5153252	max length: 331988	N50: 82011	N90: 406
 
 Run prodigal to call ORFs
 
-prodigal -i ../contigs.fasta -o contigs -a contigs.faa -d contigs.fna
+    mkdir annotation
+    
+    cd annotation    
+
+    prodigal -i ../contigs.fasta -o contigs -a contigs.faa -d contigs.fna
 
 How many genes were found?
 
-Run checkm to evaluate
+Run checkm to evaluate genome
 
-Did you get more with spades or megahit
+Did you get more genes with spades or megahit
 
 Annotate to CARD?
 
-Flye assembly long reads
+Visualise assembly graph with Bandage:
 
-Do we want to run prokka pipeline
+
+#PROKKA genome annotation pipeline
+
+https://github.com/tseemann/prokka
+
+Install:
+    mamba install -c conda-forge -c bioconda -c defaults prokka
+    
+
+    prokka ../contigs.fasta
+    
+Visualise with Artemis
+
+    sudo apt install artemis
+
+    art annotation/PROKKA_06192023/PROKKA_06192023.gff 
+
+So cool :)
+
+#Long read assembly
