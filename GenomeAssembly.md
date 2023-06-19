@@ -79,6 +79,8 @@ Now try spades
 
     spades -1 $SRGENOME/BL23DE3_SR_1.fastq -2 $SRGENOME/BL23DE3_SR_2.fastq -o BL23DE3_SR_spades -t 8
 
+In the mean time maybe create kmer histogram plot:
+    kat hist -m27 ../BL23DE3_SR_*fastq
 
 This may take twenty minutes or so:
 
