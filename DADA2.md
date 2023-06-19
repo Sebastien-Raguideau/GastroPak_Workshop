@@ -25,16 +25,20 @@ mkdir -p Projects/AD_16S
 </p>
 </details>
 
-Launch R and load library needed:
+We need to install dada2 first
 
-    library(dada2)
+```
+if (!requireNamespace("BiocManager", quietly = TRUE))
+    install.packages("BiocManager")
+BiocManager::install("dada2", version = "1.26")
+```
 
 This library contains all the functions from dada2.
 
 Let's define the path to our dataset as well as the path to our output folder
 
-    path_data = "/home/ubuntu/Data/AD_16S"
-    path_out = "/home/ubuntu/Projects/AD_16S"
+    path_data = "/home/jovyan/shared-team/datasets/AD_16S"
+    path_out = "/home/jovyan/Projects/AD_16S"
 
 ### Read quality
 Before starting any sort of analysis we need to be sure that the reads are of good quality. 
@@ -167,7 +171,7 @@ How many different sequences do we end up with?
 
 ### Taxonomic annotation
 
-    taxa <- assignTaxonomy(Seqtab.nochim, "~/Databases/silva_dada2_138/silva_nr99_v138.1_train_set.fa.gz", multithread=TRUE)
+    taxa <- assignTaxonomy(Seqtab.nochim, "~/shared-team/database/silva_dada2_138/silva_nr99_v138.1_train_set.fa.gz", multithread=TRUE)
     taxa <- addSpecies(taxa, "~/Databases/silva_dada2_138/silva_species_assignment_v138.1.fa.gz")
 
 #### Intermediary Results
@@ -187,7 +191,7 @@ For most application the phyloseq object need at least
 First load the library and the metadata
 
      library(phyloseq)
-     metadata <- read.table("/home/ubuntu/Data/AD_16S/metadata.tsv", sep="\t", header=TRUE, row.names=1)
+     metadata <- read.table("/home/jovyan/shared-team/datasets/AD_16S/metadata.tsv", sep="\t", header=TRUE, row.names=1)
      str(metadata)
 
 Then let's create a phyoseq object
@@ -271,4 +275,3 @@ Save the plots
     print(p1)
     print(p2)
     dev.off()
-
