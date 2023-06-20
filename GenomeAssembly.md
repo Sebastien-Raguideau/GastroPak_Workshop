@@ -57,6 +57,8 @@ megahit -1 ~/Data/Genomes/short_read_data/BL23DE3_SR_1.fastq -2 ~/Data/Genomes/s
 
 *Practical: Looking at number of reads in data, and total length of the assembly, calculate the average depth of coverage.*
 
+*Practical: try varying some options e.g. --min-count or --k-list*
+
 ### Gene calling with [prodigal](https://bmcbioinformatics.biomedcentral.com/articles/10.1186/1471-2105-11-119)
 Let's create an annotation directory in which we will output results from prodigal:
 ```bash
@@ -115,7 +117,18 @@ cd BL23DE3_SR_spades
 *Q: Which assembly is better? megahit/spades? Nb of genes?
 
 ### Looking at the assembly graph
-? 
+
+The assembly graph for spades is contained in the file:
+
+```
+assembly_graph_with_scaffolds.gfa
+```
+
+This can be visualised with the program Bandage. You may be able to install this on your own laptop and download the fie. If so it will look like this:
+
+![spades](/Figures/SpadesGraph.png)
+
+*Q: Is this a good assembly graph?*
 
 # PROKKA genome annotation pipeline
 
