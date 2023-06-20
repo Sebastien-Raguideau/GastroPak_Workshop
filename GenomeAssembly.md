@@ -1,116 +1,121 @@
 # Genome assembly
 
-Make a new directory in the data folder
+In this tutorial we will assemble short reads and long reads genomic sample, compare these and learn how to annotate the resulting assemblies.
 
-    mkdir -p ~/Data/Genomes
+## Before starting
+#### Data
+The dataset used is located at 
 
-    cd ~/Data/Genomes
+    /home/train/Data/Genomes
+We have both long reads and short reads for isolates. We do not have reference for these organism and assembly/annotation will generate novel  knowledge.
 
+#### Softwares
+All software needed are installed under the conda environement named Genome_assembly. 
 
-Then get short read data
-
-    mkdir short_read_data
-
-    cd short_read_data
-
-    wget https://microbial-metag-genome-tutorial.s3.climb.ac.uk/BL23DE3_SR_1.fastq
-    wget https://microbial-metag-genome-tutorial.s3.climb.ac.uk/BL23DE3_SR_2.fastq
-    wget https://microbial-metag-genome-tutorial.s3.climb.ac.uk/Ecoli61_SR_paired.fastq
-    
-    cd ..
-    
-Count number of reads, and total size of files in bps
+```bash
+conda env list
+conda activate Genome_assembly
+```
 
 
-Then get long read data
-
-    mkdir long_read_data
-
-    cd long_read_data
-
-    wget https://microbial-metag-genome-tutorial.s3.climb.ac.uk/BL21DE3_LR.fastq
-    wget https://microbial-metag-genome-tutorial.s3.climb.ac.uk/Ecoli61_LR.fastq
-    wget https://microbial-metag-genome-tutorial.s3.climb.ac.uk/Ecoli61_LR.fastq
-
-    cd ..
-
-Count number of reads, and total size of files in bps
-
-
-Install megahit
-
-    mkdir ~/Installed
-    cd ~/Installed
-    wget https://github.com/voutcn/megahit/releases/download/v1.2.9/MEGAHIT-1.2.9-Linux-x86_64-static.tar.gz
-    tar zvxf MEGAHIT-1.2.9-Linux-x86_64-static.tar.gz
-    cd MEGAHIT-1.2.9-Linux-x86_64-static/bin/
-    sudo cp * /usr/local/bin
-    
-    
+#### Project folder
+For the duration of this tutorial lets work in the following analysis folder:   
 Make analysis folder
 
-    mkdir Projects
-    cd Projects/
-   
-    mkdir GenomeAssembly
-    cd GenomeAssembly/
-
-Assembly first genome with megahit:
+```bash
+mkdir Projects/GenomeAssembly -p
+cd Projects/GenomeAssembly
+```
 
 
-    megahit -1 ~/Data/Genomes/short_read_data/BL23DE3_SR_1.fastq -2 ~/Data/Genomes/short_read_data/BL23DE3_SR_2.fastq -o BL23DE3_SR_megahit_ -t 8
+## Short reads assemblies
 
+### Assembly with megahit
 
-2023-06-19 17:01:20 - 352 contigs, total 4639286 bp, min 218 bp, max 329790 bp, avg 13179 bp, N50 115146 bp
-2023-06-19 17:01:20 - ALL DONE. Time elapsed: 258.170330 seconds
+[Megahit](https://pubmed.ncbi.nlm.nih.gov/25609793/) is a fast and memory efficient assembler allowing for the coassembly of large number of sample. 
 
+*Practical: Please find the correct command line to use*
+	
 
-Get average coverage depth 
+ - you need to specify the path to the R1, R2 reads
+ -  you need to specify an output folder /home/train/Projects/GenomeAssembly/....
+ -  you need to specify the number of threads
 
-Get error rate
+<details><summary> solution</summary>
+<p>
 
-How would you get summary stats?
+```bash
+megahit -1 ~/Data/Genomes/short_read_data/BL23DE3_SR_1.fastq -2 ~/Data/Genomes/short_read_data/BL23DE3_SR_2.fastq -o BL23DE3_SR_megahit -t 8
+```
 
-Call ORFs with prodigal
+</p>
+</details>
 
-Now try spades
+*Q: Let's look at the output, where is the assembly file? How many contigs are there? How to assess the quality of this assembly? Why is this assembly fragmented?*
 
-    export SRGENOME=~/Data/Genomes/short_read_data
+![enter image description here](Figures/debruij_ambiguity.png)
 
-    spades -1 $SRGENOME/BL23DE3_SR_1.fastq -2 $SRGENOME/BL23DE3_SR_2.fastq -o BL23DE3_SR_spades -t 8
+*Practical: Looking at number of reads in data, and total length of the assembly, calculate the average depth of coverage.*
 
-In the mean time maybe create kmer histogram plot:
-    kat hist -m27 ../BL23DE3_SR_*fastq
+### Gene calling with [prodigal](https://bmcbioinformatics.biomedcentral.com/articles/10.1186/1471-2105-11-119)
+Let's create an annotation directory in which we will output results from prodigal:
+```bash
+cd Projects/GenomeAssembly/BL23DE3_SR_megahit
+mkdir annotation
+cd annotation
+prodigal -i ../final.contigs.fasta -o contigs -a contigs.faa -d contigs.fna
+```
 
-This may take twenty minutes or so:
+*Q: how many potential genes where predicted? What is the difference between .fna and .faa?*
 
-Get assembly stats:
+### Checking draft genome quality with [checkm](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4484387/)
 
-    cd BL23DE3_SR_spades
-    
-    ~/repos/GastroPak_Workshop/scripts/contig-stats.pl < contigs.fasta 
+```bash
+cd ~/Projects/GenomeAssembly/BL23DE3_SR_megahit
+mkdir checkm
+lineage_wf final.contigs.fa checkm -x .fa -t 4 --tab_table > checkm/checkm.out
+```
+*Q: What information does checkm uses to assess completion and contamination?*
 
+### Assembly with [spades](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3342519/)
 
-sequence #: 2244	total length: 5153252	max length: 331988	N50: 82011	N90: 406
+*Practical: The same information needs to be given to spades: reads path, output path/name and number of threads. As before, find the correct command line to use. **This will take some time, either do it inside a screen or open a new terminal.***
 
-Run prodigal to call ORFs
+<details><summary> solution</summary>
+<p>
 
-    mkdir annotation
-    
-    cd annotation    
+```bash
+cd ~/Projects/GenomeAssembly
+export SRGENOME=~/Data/Genomes/short_read_data
+spades -1 $SRGENOME/BL23DE3_SR_1.fastq -2 $SRGENOME/BL23DE3_SR_2.fastq -o BL23DE3_SR_spades -t 8
+```
 
-    prodigal -i ../contigs.fasta -o contigs -a contigs.faa -d contigs.fna
+ </p>
+</details>
 
-How many genes were found?
+### Kmer histograms with [KAT](http://bioinformatics.oxfordjournals.org/content/early/2016/10/20/bioinformatics.btw663.abstract)
+*Practical: The KAT software is missing from your conda environment, use a simple command line to install it (clue look at the first result of a google search for conda install KAT)*
 
-Run checkm to evaluate genome
+Let's use kat to create a kmer histogram of the samples:
 
-Did you get more genes with spades or megahit
+```bash
+kat hist -m27 $SRGENOME/BL23DE3_SR_*fastq
+```
 
-Annotate to CARD?
+### Results of spades:
+Spades doesn't output the statistics on assembly, we use a simple perl script to obtain similar statistics as for megahit:
 
-Visualise assembly graph with Bandage:
+ ```bash
+cd BL23DE3_SR_spades
+~/repos/GastroPak_Workshop/scripts/contig-stats.pl < contigs.fasta 
+```
 
+*Practical: adapt the previous command lines and run, prodigal and checkm on the spade assembly*
+
+*Q: Which assembly is better? megahit/spades? Nb of genes?
+
+### Looking at the assembly graph
+? 
 
 # PROKKA genome annotation pipeline
 
