@@ -2,8 +2,7 @@
 
 **Monday  19th June**
 
-10h → 11h --- *Lecture* --- Overview of Training Workshop  
-Introduction to Microbial Genomics and DNA sequencing: Basic Principles (Chris)  
+10h → 11h --- *Lecture* --- [Introduction to Microbial Genomics and DNA sequencing: Basic Principles](https://github.com/Sebastien-Raguideau/GastroPak_Workshop/blob/main/Lectures/Introduction.pdf) (Chris)  
 11h → 12:30 --- *Practical* --- [Bash command line and more](https://github.com/Sebastien-Raguideau/GastroPak_Workshop/blob/main/Bash_cli_intro.md)  (Seb)  
 LUNCH  
 14h → 16h: --- *Practical* --- [Bash command line and more, continuation](https://github.com/Sebastien-Raguideau/GastroPak_Workshop/blob/main/Bash_cli_intro.md) (Seb)  
