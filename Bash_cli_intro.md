@@ -207,9 +207,9 @@ Use the key combination `ctrl+a` to leave the screen and `screen -r` to reopen t
 #### wildcards
 Wildcard is an advanced way to select multiple files or folder using a pattern. In practice you give incomplete information to bash which will look into all possibilities and output them for you. You use a `* ` symbole, and call it a wildcard.
 ```bash
-ls /home/jovyan/shared-team/*
-ls /home/jovyan/*/database
-ls /home/jovyan/*/*/*/AD7_W27*
+echo /home/jovyan/shared-team/*
+echo /home/jovyan/*/database
+echo /home/jovyan/*/*/*/AD7_W27*
 ```
 
 #### Writing to a file
