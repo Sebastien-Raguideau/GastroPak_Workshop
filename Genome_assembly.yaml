@@ -11,4 +11,4 @@ dependencies:
   - prokka
   - flye
   - kat
-  - checkm
+  - checkm-genome
