@@ -10,3 +10,5 @@ dependencies:
   - prodigal
   - prokka
   - flye
+  - kat
+  - checkm
