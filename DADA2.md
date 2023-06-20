@@ -100,6 +100,11 @@ Let's look at the quality of currents these filtered reads.
     plotQualityProfile(Filtered_R2)
     dev.off()
 
+### Dada2 model
+Sequencing errors imply that the more abundant an organism is, the more erroneous sequence we will be able to find.
+![dada2](/Figures/dada2_model.png)
+![EM_dada](/Figures/EM_dada.png)
+
 
 ### Learning the error rates
 This is the most time consuming part of the pipeline. 
