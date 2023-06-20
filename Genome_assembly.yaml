@@ -1,0 +1,12 @@
+name: Genome_assembly
+channels:
+  - conda-forge
+  - bioconda
+  - defaults
+  - anaconda
+dependencies:
+  - megahit
+  - spades
+  - prodigal
+  - prokka
+  - flye
