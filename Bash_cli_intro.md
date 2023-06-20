@@ -299,7 +299,7 @@ More in detail:
  - url of the data: https://microbial-metag-seb-data-sharing.s3.climb.ac.uk/AD16S.tar.gz
  - put the dataset in a new folder named `datasets` located in you home directory
  - look on the internet how to use the tar command to decompress the archive
- - url for conda fastqc: https://anaconda.org/bioconda/fastqc 
+ - url for conda fastqc: https://anaconda.org/bioconda/fastqc, create a new environment just for fastqc 
  - write a bash loop to apply fastqc on each fastq file
 
  
