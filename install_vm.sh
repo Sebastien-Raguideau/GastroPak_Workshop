@@ -70,7 +70,7 @@ mamba env create -f $GastroPak_Workshop/Genome_assembly.yaml
 
 
 # Plasmidnet
-mamba create --name plasmidnet python=3.8 -y
+mamba create -c anaconda --name plasmidnet python=3.8 -y
 export CONDA=$(dirname $(dirname $(which conda)))
 source $CONDA/bin/activate plasmidnet
 pip install -r $HOME/repos/PlasmidNet/requirements.txt
@@ -101,6 +101,10 @@ source $CONDA/bin/deactivate
 
 # add R environement
 mamba env create -f $GastroPak_Workshop/R.yaml
+
+# add read analysis env
+mamba env create -f $GastroPak_Workshop/Read_based_analysis.yaml
+
 
 # -------------------------------------
 # ---------- modify .bashrc -----------
@@ -157,14 +161,15 @@ wget https://raw.githubusercontent.com/Sebastien-Raguideau/strain_resolution_pra
 # ---------- download datasets  -------
 # -------------------------------------
 mkdir $HOME/Data
-wget https://microbial-metag-seb-data-sharing.s3.climb.ac.uk/dataset.tar
-tar xvf dataset.tar
+wget https://microbial-metag-seb-data-sharing.s3.climb.ac.uk/datasets.tar
+tar xvf datasets.tar
+mv datasets/* .
+rm -r datasets
 
 
 tar xzvf AD16S.tar.gz && mv data AD_16S && rm AD16S.tar.gz && mv metadata.tsv AD_16S&
 tar xzvf HIFI_data.tar.gz && rm HIFI_data.tar.gz &
 tar xzvf Quince_datasets.tar.gz && mv Quince_datasets/* . && rm Quince_datasets.tar.gz && rm -r Quince_datasets&
-tar xzvf gastropak_data.tar && rm gastropak_data.tar&
 
 # other dataset
 mkdir -p $HOME/Data/Genomes/short_read_data
@@ -179,11 +184,6 @@ wget https://microbial-metag-genome-tutorial.s3.climb.ac.uk/BL21DE3_LR.fastq&
 wget https://microbial-metag-genome-tutorial.s3.climb.ac.uk/Ecoli61_LR.fastq&
 wget https://microbial-metag-genome-tutorial.s3.climb.ac.uk/Ecoli61_LR.fastq&
 
-
-# metaphlan
-source $CONDA/bin/activate Read_analysis
-metaphlan --install --bowtie2db $HOME/Databases/metaphlan
-source $CONDA/bin/deactivate
 
 # update db for krona
 source $CONDA/bin/activate Read_analysis
@@ -213,17 +213,9 @@ rm *.log
 
 
 # install checkm/gtdb database
-source $CONDA/bin/activate STRONG
+source $CONDA/bin/activate Genome_assembly
 checkm data setRoot $HOME/Databases/checkm
 source $CONDA/bin/deactivate
-
-# -------------------------------------
-# ---------- access to hmem03   -------
-# -------------------------------------
-
-
-echo "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDVBIPv4/upccSRjnlahpwkFIvB8NAyL/Sb8/Ph8HLIIs+Dcp1/okregYVVfiSVkif+1Xsp5/xGVsCv3IYRwL8mlr3C0OwhM7rqlQKxojUDMfCblF/eK6Xpi0npgRhV2EWitgnwWuuNTF3Ig7HsHFo+haW5rsmnptaRRAZM0JHTnMbDfriZXloC+W1uemyl7823Q9IZGIa7toWAUBH+LjADkuNAMqQkJYXWwDoexvTZiMMo25yIPFAZEJowJOhDA3jUoX2bTByxV9fuhUvnIS1Wvgdrdf0RuYiuWGBVPgwnXx6C2bFGmAcalnW17ezN8lfmY1vdFoGfFegHBSxwZI7l+8lXVYLtGeo8hF92D7xY2G1wY0b+jxTVrYhDqxQ5PuYHtNq6KXj2QzwdZym2lj+6sW3BMYbnY06hJPnZgGRCU/OvKv5GkNJ6u1a27VnXoVLIS71EJVj2WIrgZqyDgaShsv3mECplG4h3EDaa4naS0fziwZ983/NPn2gtLO1D920= ubuntu@mmb-dtp"> /home/ubuntu/.ssh/id_rsa
-
 
 
 # -------------------------------------
@@ -239,3 +231,10 @@ ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDOmbDQthXhZ78qqiY85QLzCEl44sZhb6jnatlzoKu+
 echo "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQC74KXzywTRITuXDFNLklbpKhCHzwTabTZckT/p9r85zUL47mxrhIseFuKORNuX/PpPj9q557zF1Vd3UOi5uItaG35DXgTQF21wauz9N63pFGycbgULBSRrbilcXCUh2/rmaSvpPUb9/rk84q9DgsHthoqH9Fa+omIydZ191ugt//DcY+mmnRpOgNFU/S3zBp2wG/MpI3PEB5b+lFgcS72nr62iSZ3ooPXNkQxR147Hj1T5o7t3HefnNF8cZ4E57Lad3Yw6/UpghDakuGjlcLyjsbTc0KQqIglF7vBGKCcJcVtP6zrCJtTBUSGxLW4a6JqFxxCGANnOn2/pxgrmDjUKkshi0XDDzAm8B1+F/wFq19uogPWFFgjt+d0Xmb/sXl9qRRURZeMpMlA/8c19Xd2XeqTStr0o2MEfHB0z9F9KVZvXUednzuMvqKdteH3eSuYP0g4WHqAfy+xDVTqOApR3I5Z+v/CrSNONkaaW8W1i3uahCpPnPsqrbiaKDVWn4N8vXS85dE48ntjU5to9esC6foDaMtxCW+9K4eGgpsalFV5FeGMb9NOiO1Wbj/ME5n0UyrGx5xAlknrXTAll50drtctqUxKvhjbpdmwe1yX0XdbVp6WLt4IaqSiXmcFnp/M5JN3Rc3hSt8mseQHnWG9xlEGS3HJxpHuIw/c+/v4DjQ== quince@N140667
 " >> /home/ubuntu/.ssh/authorized_keys
 
+
+
+# ---------- put update at the since it takes too long ------------
+# metaphlan
+source $CONDA/bin/activate Read_analysis
+metaphlan --install --bowtie2db $HOME/Databases/metaphlan
+source $CONDA/bin/deactivate
