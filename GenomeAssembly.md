@@ -9,6 +9,17 @@ The dataset used is located at
     /home/train/Data/Genomes
 We have both long reads and short reads for isolates. We do not have reference for these organism and assembly/annotation will generate novel  knowledge.
 
+There are reads from two genomes here BL21DE3 and Ecoli61 and for each both short and long reads.
+
+
+BL23DE3_SR_1.fastq: Forward short Illumina reads BL23DE3
+BL23DE3_SR_2.fastq: Reverse short Illumina reads BL23DE3
+Ecoli61_SR_paired.fastq: Paired short Illumina reads Ecoli61
+Ecoli61_LR.fastq: Long Nanopore reads E coli 61
+BL21DE3_LR.fastq: Long reads BL23DE3 probably :)
+
+How could you quickly check what organism BL21DE3 is?
+
 #### Softwares
 All software needed are installed under the conda environement named Genome_assembly. 
 
@@ -33,6 +44,8 @@ cd Projects/GenomeAssembly
 ### Assembly with megahit
 
 [Megahit](https://pubmed.ncbi.nlm.nih.gov/25609793/) is a fast and memory efficient assembler allowing for the coassembly of large number of sample. 
+
+*Chose one organism to assemble from short reads either Ecoli61 or BL23DE3*
 
 *Practical: Please find the correct command line to use*
 	
