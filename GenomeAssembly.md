@@ -139,8 +139,10 @@ Install:
     
 
     prokka ../contigs.fasta
-    
-Visualise with Artemis (this may not be possible on server)
+
+Evaluate output of Prokka. Look at .txt and .tsv files in Prokka output directory.
+
+Visualise with Artemis (this may not be possible on server) - but you can run on your laptops. The gff file has been placed in the GastroPak_Workshop repo.
 
     sudo apt install artemis
 
@@ -154,6 +156,9 @@ Assemble a genome with flye:
 
     flye --nano-raw BL21DE3_LR.fastq --out-dir BL21DE3_LR_flye --threads 8
     
+
+Look at assembly_info.txt how good is this assembly?
+
 Visualise assembly graph (not possible on server)
 
 ![spades](/Figures/FlyeGraph.png)
@@ -161,6 +166,6 @@ Visualise assembly graph (not possible on server)
 *QCount gene number, are there more less ORFs than for the short read assembly?
 
 
-
+*Boss level practical polish the Nanopore assembly with short reads*
 
 # Long read assembly
