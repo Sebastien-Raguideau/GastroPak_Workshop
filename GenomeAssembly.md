@@ -12,11 +12,11 @@ We have both long reads and short reads for isolates. We do not have reference f
 There are reads from two genomes here BL21DE3 and Ecoli61 and for each both short and long reads.
 
 
-BL23DE3_SR_1.fastq: Forward short Illumina reads BL23DE3
-BL23DE3_SR_2.fastq: Reverse short Illumina reads BL23DE3
-Ecoli61_SR_paired.fastq: Paired short Illumina reads Ecoli61
-Ecoli61_LR.fastq: Long Nanopore reads E coli 61
-BL21DE3_LR.fastq: Long reads BL23DE3 probably :)
+1. BL23DE3_SR_1.fastq: Forward short Illumina reads BL23DE3
+2. BL23DE3_SR_2.fastq: Reverse short Illumina reads BL23DE3
+3. Ecoli61_SR_paired.fastq: Paired short Illumina reads Ecoli61
+4. Ecoli61_LR.fastq: Long Nanopore reads E coli 61
+5. BL21DE3_LR.fastq: Long reads BL23DE3 probably :)
 
 How could you quickly check what organism BL21DE3 is?
 
