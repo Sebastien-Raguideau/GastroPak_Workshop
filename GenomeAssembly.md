@@ -140,7 +140,7 @@ Install:
 
     prokka ../contigs.fasta
     
-Visualise with Artemis
+Visualise with Artemis (this may not be possible on server)
 
     sudo apt install artemis
 
@@ -154,9 +154,11 @@ Assemble a genome with flye:
 
     flye --nano-raw BL21DE3_LR.fastq --out-dir BL21DE3_LR_flye --threads 8
     
-Visualise assembly graph
+Visualise assembly graph (not possible on server)
 
-Count gene number
+![spades](/Figures/FlyeGraph.png)
+
+*QCount gene number, are there more less ORFs than for the short read assembly?
 
 
 
