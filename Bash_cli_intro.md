@@ -242,7 +242,7 @@ ls -l |wc -l
 Here is a practical example:
 If you look inside the overly long, rubbish named folder you will see a file named assembly_summary_refseq.txt. It is a summary of refseq genomes references, all metadata and download links. 
 
-Use `less -s` to look at the first few lines
+Use `less -S` to look at the first few lines
 
 *Practical1: how big is it? how many lines are there? How many columns?*
 
