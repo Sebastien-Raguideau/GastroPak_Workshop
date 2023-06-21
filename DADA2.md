@@ -37,7 +37,7 @@ This library contains all the functions from dada2.
 
 Let's define the path to our dataset as well as the path to our output folder
 
-    path_data = "/home/jovyan/shared-team/datasets/AD_16S"
+    path_data = "/home/jovyan/shared-team/datasets/data/AD_16S"
     path_out = "/home/jovyan/Projects/AD_16S"
 
 ### Read quality
