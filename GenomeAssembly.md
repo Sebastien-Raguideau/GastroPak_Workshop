@@ -38,7 +38,7 @@ cd Projects/GenomeAssembly
 	
 
  - you need to specify the path to the R1, R2 reads
- -  you need to specify an output folder /home/train/Projects/GenomeAssembly/....
+ -  you need to specify an output folder /home/ubuntu/Projects/GenomeAssembly/....
  -  you need to specify the number of threads
 
 <details><summary> solution</summary>
