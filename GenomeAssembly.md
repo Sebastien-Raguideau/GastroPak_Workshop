@@ -88,7 +88,7 @@ prodigal -i ../final.contigs.fasta -o contigs -a contigs.faa -d contigs.fna
 ```bash
 cd ~/Projects/GenomeAssembly/BL23DE3_SR_megahit
 mkdir checkm
-lineage_wf final.contigs.fa checkm -x .fa -t 4 --tab_table > checkm/checkm.out
+checkm lineage_wf final.contigs.fa checkm -x .fa -t 4 --tab_table > checkm/checkm.out
 ```
 *Q: What information does checkm uses to assess completion and contamination?*
 
