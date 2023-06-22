@@ -12,7 +12,7 @@ LUNCH
 
 9h -> 10h: Command line linux refresher (Seb)  
 10h → 11h --- *Lecture* --- [Genome Assembly and Annotation](https://github.com/Sebastien-Raguideau/GastroPak_Workshop/blob/main/Lectures/GenomeAssembly.pdf) (Chris)  
-11h → 12:30 --- *Practical* --- (Genome Assembly and Annotation Tutorial)[https://github.com/Sebastien-Raguideau/GastroPak_Workshop/blob/main/GenomeAssembly.md] (Seb)  
+11h → 12:30 --- *Practical* --- [Genome Assembly and Annotation Tutorial](https://github.com/Sebastien-Raguideau/GastroPak_Workshop/blob/main/GenomeAssembly.md) (Seb)  
 LUNCH  
 14h → 15h --- *Lecture* --- 16S rRNA community profiling (Chris)  
 15h → 16h: --- *Practical* --- [16S rRNA community profiling tutorial](https://github.com/Sebastien-Raguideau/GastroPak_Workshop/blob/main/DADA2.md) (Seb)  
