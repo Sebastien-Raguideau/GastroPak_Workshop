@@ -6,7 +6,7 @@ In this tutorial we will assemble short reads and long reads genomic sample, com
 #### Data
 The dataset used is located at 
 
-    /home/train/Data/Genomes
+    /home/ubuntu/Data/Genomes
 We have both long reads and short reads for isolates. We do not have reference for these organism and assembly/annotation will generate novel  knowledge.
 
 There are reads from two genomes here BL21DE3 and Ecoli61 and for each both short and long reads.
