@@ -186,6 +186,16 @@ How many different sequences do we end up with?
 
 # 2) Phyloseq
 Phyloseq is a R library for handling taxonomy data, it contain multiple handy function for ploting diversity, taxonomic profile/diversity .... More documentation at https://joey711.github.io/phyloseq/
+
+We need to install it as well:
+
+```
+if(!requireNamespace("BiocManager")){
+  install.packages("BiocManager")
+}
+BiocManager::install("phyloseq")
+```
+
 ### Creating a phyloseq object
 The first step needed is the most complicated one, creating the phyloseq object. 
 For most application the phyloseq object need at least 

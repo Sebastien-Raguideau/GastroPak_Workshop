@@ -161,10 +161,11 @@ wget https://raw.githubusercontent.com/Sebastien-Raguideau/strain_resolution_pra
 # ---------- download datasets  -------
 # -------------------------------------
 mkdir $HOME/Data
+cd $HOME/Data
 wget https://microbial-metag-seb-data-sharing.s3.climb.ac.uk/datasets.tar
 tar xvf datasets.tar
 mv datasets/* .
-rm -r datasets
+rm -r datasets datasets.tar
 
 
 tar xzvf AD16S.tar.gz && mv data AD_16S && rm AD16S.tar.gz && mv metadata.tsv AD_16S&
