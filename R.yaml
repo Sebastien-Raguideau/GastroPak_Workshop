@@ -3,7 +3,14 @@ channels:
   - conda-forge
   - r
   - bioconda
+  - defaults
+  - anaconda
 dependencies:
+  - bioconductor-mia
+  - bioconductor-miaviz
+  - bioconductor-miasim
+  - bioconductor-ancombc
+  - bioconductor-philr
   - r-base
   - bioconductor-dada2
   - bioconductor-phyloseq
