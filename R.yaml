@@ -12,7 +12,7 @@ dependencies:
   - bioconductor-miasim
   - bioconductor-ancombc
   - bioconductor-philr
-  - r-base
+  - r-base>4.3
   - bioconductor-dada2
   - bioconductor-phyloseq
   - r-vegan
