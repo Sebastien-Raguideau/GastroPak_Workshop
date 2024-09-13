@@ -27,17 +27,17 @@ wget https://repo.anaconda.com/miniconda/Miniconda3-py38_4.12.0-Linux-x86_64.sh
 
 /bin/bash Miniconda3-py38_4.12.0-Linux-x86_64.sh -b -p $REPOS/miniconda3 && rm Miniconda3-py38_4.12.0-Linux-x86_64.sh
 
-/home/ubuntu/repos/miniconda3/condabin/conda init
-/home/ubuntu/repos/miniconda3/condabin/conda config --set auto_activate_base false
+$HOME/repos/miniconda3/condabin/conda init
+$HOME/repos/miniconda3/condabin/conda config --set auto_activate_base false
 
-__conda_setup="$('/home/ubuntu/repos/miniconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
+__conda_setup="$("$HOME/repos/miniconda3/bin/conda" 'shell.bash' 'hook' 2> /dev/null)"
 if [ $? -eq 0 ]; then
     eval "$__conda_setup"
 else
-    if [ -f "/home/ubuntu/repos/miniconda3/etc/profile.d/conda.sh" ]; then
-        . "/home/ubuntu/repos/miniconda3/etc/profile.d/conda.sh"
+    if [ -f "$HOME/repos/miniconda3/etc/profile.d/conda.sh" ]; then
+        . "$HOME/repos/miniconda3/etc/profile.d/conda.sh"
     else
-        export PATH="/home/ubuntu/repos/miniconda3/bin:$PATH"
+        export PATH="$HOME/repos/miniconda3/bin:$PATH"
     fi
 fi
 unset __conda_setup
@@ -135,11 +135,11 @@ echo -e 'export PATH=~/repos/GastroPak_Workshop/scripts:$PATH'>>$HOME/.bashrc
 
 # add strainberry
 echo -e "\n\n #------ strainberry -------">>$HOME/.bashrc 
-echo -e 'export PATH=/home/ubuntu/repos/strainberry:$PATH'>>$HOME/.bashrc
+echo -e 'export PATH=$HOME/repos/strainberry:$PATH'>>$HOME/.bashrc
 
 # add strainberry
 echo -e "\n\n #------ plasmidnet -------">>$HOME/.bashrc 
-echo -e 'export PATH=/home/ubuntu/repos/PlasmidNet/bin:$PATH'>>$HOME/.bashrc
+echo -e 'export PATH=$HOME/repos/PlasmidNet/bin:$PATH'>>$HOME/.bashrc
 
 
 # -------------------------------------
@@ -226,11 +226,11 @@ source $CONDA/bin/deactivate
 # Rob
 echo "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDOmbDQthXhZ78qqiY85QLzCEl44sZhb6jnatlzoKu+CR0M7VZumWP1LNaI62VaPAuvzSACgwE/9IfSD9YbwVkBPVobYSXyeGb3/JuGiZiErF7bkK4JOpu0K19JogXQCn8CKkFvBwqe4ufaDRch3HGX8MylYwSQViceTPJsGVlCIb5X22+JOFB8uO8Ho1QmTnrRiX1Zw1r/Zw/xT5B+pruMHxE2qGbuKSvZ3okpXwQlyDHw/002GruhQRBb7sMNuRt7fKgZf6/jIH7rbFWlJHtCayDBLK2Y891Ae7ANNfXR8AFPLgLQKsswHOG3/VX4aX6btyKNu2SPXwFDnGFDw63h u1673564@MAC20210
 ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDeEetuKkj9mJ6aK0wRgbPxUWZEVtXiQK856hAVY3fYlK45X6i5wEYT+6/ymIcJ3yDo1Vii3fvYlh46FfNak53Gp8/YOvC/3HQGUR01PfIW1sAdFN6q6EpZ070zkRgp/9E+evTAJkqQ09zueH+Y2o713s4PQMWOnZeDCO5Sksu+5yY5y4Io4hZHPGQYl/M0aG20j44nlWTL1LI1TG4MLMThG2VlZZ8qRnIpvzavLjIXqxgpoYQYEHc9h+KC/ycX5ijahedO/LD2chmk3WoBh8W1SNS4t5dCuT2T9kO0J26uKaWjipm+zoCnO+XJ0AiJGO0TnVh4Z5WMzNbX7D+caQA3b7cG2KwFi8RHk3DxtMaIKhGULEjro0GfoHwbWNdKEyPlpTMlx2NJfUjiJHtWSimHyTHhk7Qg/s7428G+pEYITMFli2jnmRcl7phX9w/gFZHQmEwfkgH065w2p4J65ztDA1rJirNMGO5SZkErJaTQPa1DvudfjglzXhv3HBafcB8= rjames@N120057
-ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDOmbDQthXhZ78qqiY85QLzCEl44sZhb6jnatlzoKu+CR0M7VZumWP1LNaI62VaPAuvzSACgwE/9IfSD9YbwVkBPVobYSXyeGb3/JuGiZiErF7bkK4JOpu0K19JogXQCn8CKkFvBwqe4ufaDRch3HGX8MylYwSQViceTPJsGVlCIb5X22+JOFB8uO8Ho1QmTnrRiX1Zw1r/Zw/xT5B+pruMHxE2qGbuKSvZ3okpXwQlyDHw/002GruhQRBb7sMNuRt7fKgZf6/jIH7rbFWlJHtCayDBLK2Y891Ae7ANNfXR8AFPLgLQKsswHOG3/VX4aX6btyKNu2SPXwFDnGFDw63h u1673564@MAC20210" >> /home/ubuntu/.ssh/authorized_keys
+ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDOmbDQthXhZ78qqiY85QLzCEl44sZhb6jnatlzoKu+CR0M7VZumWP1LNaI62VaPAuvzSACgwE/9IfSD9YbwVkBPVobYSXyeGb3/JuGiZiErF7bkK4JOpu0K19JogXQCn8CKkFvBwqe4ufaDRch3HGX8MylYwSQViceTPJsGVlCIb5X22+JOFB8uO8Ho1QmTnrRiX1Zw1r/Zw/xT5B+pruMHxE2qGbuKSvZ3okpXwQlyDHw/002GruhQRBb7sMNuRt7fKgZf6/jIH7rbFWlJHtCayDBLK2Y891Ae7ANNfXR8AFPLgLQKsswHOG3/VX4aX6btyKNu2SPXwFDnGFDw63h u1673564@MAC20210" >> $HOME/.ssh/authorized_keys
 
 # Chris
 echo "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQC74KXzywTRITuXDFNLklbpKhCHzwTabTZckT/p9r85zUL47mxrhIseFuKORNuX/PpPj9q557zF1Vd3UOi5uItaG35DXgTQF21wauz9N63pFGycbgULBSRrbilcXCUh2/rmaSvpPUb9/rk84q9DgsHthoqH9Fa+omIydZ191ugt//DcY+mmnRpOgNFU/S3zBp2wG/MpI3PEB5b+lFgcS72nr62iSZ3ooPXNkQxR147Hj1T5o7t3HefnNF8cZ4E57Lad3Yw6/UpghDakuGjlcLyjsbTc0KQqIglF7vBGKCcJcVtP6zrCJtTBUSGxLW4a6JqFxxCGANnOn2/pxgrmDjUKkshi0XDDzAm8B1+F/wFq19uogPWFFgjt+d0Xmb/sXl9qRRURZeMpMlA/8c19Xd2XeqTStr0o2MEfHB0z9F9KVZvXUednzuMvqKdteH3eSuYP0g4WHqAfy+xDVTqOApR3I5Z+v/CrSNONkaaW8W1i3uahCpPnPsqrbiaKDVWn4N8vXS85dE48ntjU5to9esC6foDaMtxCW+9K4eGgpsalFV5FeGMb9NOiO1Wbj/ME5n0UyrGx5xAlknrXTAll50drtctqUxKvhjbpdmwe1yX0XdbVp6WLt4IaqSiXmcFnp/M5JN3Rc3hSt8mseQHnWG9xlEGS3HJxpHuIw/c+/v4DjQ== quince@N140667
-" >> /home/ubuntu/.ssh/authorized_keys
+" >> $HOME/.ssh/authorized_keys
 
 
 
